@@ -3,12 +3,12 @@
 * ## Single Linked List
   * ### Combine Nodes Between Zeros
   * ### Merge K Sorted Linked Lists
-* ### Double Linked List
-* ### Circular Linked List
-* ### Stack (Linked List)
+* ## Double Linked List
+* ## Circular Linked List
+* ## Stack (Linked List)
   * ### Convert the Infix Expression to Postfix Expression
   * ### Longest Valid Parentheses
-* ### Queue (Linked List)
+* ## Queue (Linked List)
   * ### Generate Binary Numbers from 1 to N
   * ### Sorting a Queue
 
