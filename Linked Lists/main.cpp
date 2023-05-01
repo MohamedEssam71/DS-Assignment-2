@@ -1,18 +1,22 @@
 #include <iostream>
 #include "SingleLinkedList.cpp"
-//#include "CircularLinkedList.cpp"
-//#include "DoubleLinkedList.cpp"
+// #include "CircularLinkedList.cpp"
+// #include "DoubleLinkedList.cpp"
 
 using namespace std;
 
-void combineNodesZero(SingleLinkedList<int> list){
+void combineNodesZero(SingleLinkedList<int> list)
+{
     SingleLinkedList<int> newList;
-    Node<int>* p = list.getHead();
+    Node<int> *p = list.getHead();
     int sum = 0;
-    while(p != NULL){
+    while (p != NULL)
+    {
         sum += p->value;
-        if(p->value == 0){
-            if(sum != 0){
+        if (p->value == 0)
+        {
+            if (sum != 0)
+            {
                 newList.insertAtTail(sum);
                 sum = 0;
             }
@@ -22,77 +26,82 @@ void combineNodesZero(SingleLinkedList<int> list){
     newList.print();
 }
 
+Node<int> *merge(Node<int> *p, Node<int> *q)
+{
+    Node<int> *third = new Node<int>();
+    Node<int> *last = new Node<int>();
 
-Node<int>* merge(Node<int>* p, Node<int>* q){
-    Node<int>* third = new Node<int>();
-    Node<int>* last = new Node<int>();
-
-    if(p->value <= q->value){
+    if (p->value <= q->value)
+    {
         third = last = p;
         p = p->next;
     }
-    else{
+    else
+    {
         third = last = q;
         q = q->next;
     }
     last->next = NULL;
 
-    while(p!=NULL && q!=NULL){
-        if(p->value <= q->value){
+    while (p != NULL && q != NULL)
+    {
+        if (p->value <= q->value)
+        {
             last->next = p;
             last = p;
             p = p->next;
         }
-        else{
+        else
+        {
             last->next = q;
             last = q;
             q = q->next;
         }
         last->next = NULL;
     }
-    if(p) last->next = p;
-    else last->next = q;
+    if (p)
+        last->next = p;
+    else
+        last->next = q;
     return third;
 }
 
-
-Node<int>* mergeLists(Node<int>* arr[], int k){
-    int i = 0, j = k-1;
-    while(j > i){
-        arr[0] = merge(arr[i], arr[j]);
-        ++i,--j;
-        if(i == j){
-            arr[0] = merge(arr[0], arr[j]);
-            break;
-        }
+Node<int> *mergeLists(Node<int> *arr[], int k)
+{
+    int j = k - 1;
+    while (j > 0)
+    {
+        arr[0] = merge(arr[0], arr[j]);
+        --j;
     }
     return arr[0];
-
 }
 
-int main() {
-     SingleLinkedList<int> list, list2, list3;
+int main()
+{
+    SingleLinkedList<int> list, list2, list3;
 
-     int arr[4] = {1,3,5,7};
-     list.create(arr,4);
-     list.print();
+    int arr[4] = {1, 3, 5, 7};
+    list.create(arr, 4);
+    list.print();
 
-     int arr2[4] = {2,4,6,8};
-     list2.create(arr2,4);
-     list2.print();
+    int arr2[4] = {2, 4, 6, 8};
+    list2.create(arr2, 4);
+    list2.print();
 
-     int arr3[3] = {0,9,10};
-     list3.create(arr3,3);
-     list3.print();
+    int arr3[3] = {0, 9, 10};
+    list3.create(arr3, 3);
+    list3.print();
 
-     Node<int>* heads[3] = {list.getHead(), list2.getHead(), list3.getHead()};
+    Node<int> *heads[3] = {list.getHead(), list2.getHead(), list3.getHead()};
 
-
-    Node<int>* third = mergeLists(heads,3);
-    while(third != NULL){
+    Node<int> *third = mergeLists(heads, 3);
+    while (third != NULL)
+    {
         cout << third->value << " ";
         third = third->next;
-        if(third == NULL) cout << endl;
+        if (third == NULL)
+            cout << endl;
     }
 }
 
