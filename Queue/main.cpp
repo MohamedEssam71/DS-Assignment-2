@@ -1,25 +1,17 @@
 #include <iostream>
+#include <bits/stdc++.h>
 #include "Queue.cpp"
 using namespace std;
 
-void reverseQueue(Queue<int>&q){
-    if(!q.queueSize()) return;
-    int top = q.dequeue();
-    reverseQueue(q);
-    q.enqueue(top);
-}
 
 void generateBinaryNumbers(int n){
-    Queue<int>q;
+    Queue<string>q;
+    q.enqueue("1");
     for(int i = 1; i <= n; ++i) {
-        int num = i;
-        while(num) {
-            q.enqueue(num % 2);
-            num /= 2;
-        }
-        reverseQueue(q);
-        q.print();
-        q.clear();
+        string s = q.dequeue();
+        cout << s << " ";
+        q.enqueue(s + "0");
+        q.enqueue(s + "1");
     }
 }
 
@@ -51,7 +43,7 @@ void sortQueue(Queue<int>q){
 
 
 int main() {
-//    generateBinaryNumbers(5);
+//   generateBinaryNumbers(5);
 
 //    Queue<int> q;
 //    q.enqueue(9);

@@ -6,11 +6,11 @@ void Queue<T>::enqueue(T val) {
 
 template<class T>
 T Queue<T>::dequeue() {
-    T value = list.removeAtHead();
-    if(!(~value)){
+    if(list.getHead() == NULL){
         std::cout << "Queue is Empty Can't Pop" << std::endl;
         exit(0);
     }
+    T value = list.removeAtHead();
     return value;
 }
 

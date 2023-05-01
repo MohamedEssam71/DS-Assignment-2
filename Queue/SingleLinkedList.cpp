@@ -73,7 +73,6 @@ void SingleLinkedList<T>::insertAt(T val, int index) {
 
 template<class T>
 T SingleLinkedList<T>::removeAtHead() {
-    if(head == NULL) return -1;
     T val;
     if(size == 1){
         val = head->value;
