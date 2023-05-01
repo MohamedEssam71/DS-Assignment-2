@@ -1,18 +1,22 @@
 #include "StackApplication.h"
 
 void StackApplication::longestValidParentheses(std::string s) {
-    Stack<char> st;
+    Stack<int> st;
     int ans = 0;
     int n = s.size();
+    st.push(-1);
     for(int i = 0; i < n; ++i){
         if(s[i] == '('){
-            st.push('(');
+            st.push(i);
         }
         else{
-            if(st.isEmpty()) continue;
+            st.pop();
+            if(st.isEmpty()){
+                st.push(i);
+            }
             else{
-                st.pop();
-                ans+=2;
+                int len = i - st.top();
+                ans = fmax(ans, len);
             }
         }
     }

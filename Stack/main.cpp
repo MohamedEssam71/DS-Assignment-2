@@ -8,7 +8,7 @@ using namespace std;
 
 int main() {
     StackApplication app;
-//    string s = "(()";
+//    string s = "(()(()()";
 //    app.longestValidParentheses(s);
 //    string s = "(A+B)*(C+D)";
 //    app.postFix(s);
